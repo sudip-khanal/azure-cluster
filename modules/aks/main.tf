@@ -1,7 +1,7 @@
 resource "azurerm_kubernetes_cluster" "k8s" {
-  location            = azurerm_resource_group.rg.location
+  location            = var.resource_group_location
   name                = var.cluster_name
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = var.resource_group_name
   dns_prefix          = var.cluster_dns_prefix
 
   identity {
@@ -30,6 +30,6 @@ data "azurerm_container_registry" "acr" {
 resource "azurerm_role_assignment" "example" {
   principal_id                     = azurerm_kubernetes_cluster.k8s.kubelet_identity[0].object_id
   role_definition_name             = "AcrPull"
-  scope                            = azurerm_container_registry.example.id
+  scope                            = data.azurerm_container_registry.acr.id
   skip_service_principal_aad_check = true
 }
