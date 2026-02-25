@@ -11,10 +11,16 @@ terraform {
       version = "~>4.55.0"
     }
   }
+  backend "azurerm" {
+    resource_group_name  = "tfstate"
+    storage_account_name = "toggletfstate619"
+    container_name       = "tfstate"
+    key                  = "dev-core.tfstate"
+  }
 }
 
 provider "azurerm" {
   features {}
 
-  subscription_id = var.subcription_id
+  subscription_id = var.subscription_id
 }

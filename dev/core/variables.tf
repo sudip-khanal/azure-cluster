@@ -1,5 +1,5 @@
-variable "subcription_id" {
-  type = string
+variable "subscription_id" {
+  type        = string
   description = "The subscription id used for azure authentication"
-  sensitive = true
+  sensitive   = true
 }
