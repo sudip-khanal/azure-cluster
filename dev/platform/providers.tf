@@ -10,6 +10,10 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~>4.55.0"
     }
+     helm ={
+      source = "hashicorp/helm"
+      version = "3.1.1"
+    }
   }
   backend "azurerm" {
     resource_group_name  = "tfstate"
